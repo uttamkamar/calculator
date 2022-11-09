@@ -3,6 +3,7 @@ import DigitButton from './DigitButton';
 import OperationButton from './OperationButton';
 import './App.css';
 
+//all the actions
 export const ACTIONS = {
 	ADD_DIGIT: 'add-digit',
 	CHOOSE_OPERATION: 'choose-operation',
@@ -13,6 +14,7 @@ export const ACTIONS = {
 
 function reducer(state, { type, payload }) {
 	switch (type) {
+		//adding digit in the field
 		case ACTIONS.ADD_DIGIT:
 			if (state.overwrite) {
 				return {
@@ -21,9 +23,11 @@ function reducer(state, { type, payload }) {
 					overwrite: false,
 				};
 			}
+			//input 0 restriction
 			if (payload.digit === '0' && state.currentOperand === '0') {
 				return state;
 			}
+			//input "." restriction
 			if (payload.digit === '.' && state.currentOperand === '.') {
 				return state;
 			}
